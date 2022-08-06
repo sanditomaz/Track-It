@@ -1,29 +1,82 @@
 import logo from "../img/logo.png";
 import StyledLogin from "../Styles/StyledLogin";
-import { Link } from "react-router-dom";
+import { ThreeDots } from "react-loader-spinner";
+import { Link, useNavigate } from "react-router-dom";
+import { useState } from "react";
+import { FazerLogin } from "../06.Shared/API";
 
 export default function Login() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [disable, setDisable] = useState(false);
+  const navigate = useNavigate();
+
+  function sendForm(e) {
+    setDisable(true);
+    e.preventDefault();
+    const body = {
+      email,
+      password,
+    };
+    const promise = FazerLogin(body);
+    promise.then((res) => navigate("/hoje"));
+    promise.catch((err) => {
+      alert("Não foi possível fazer o login, verifique seus dados!");
+      setDisable(false);
+    });
+  }
+
   return (
     <StyledLogin>
-      <nav>
-        <div>
-          <img src={logo} alt="logo" />
-        </div>
-        <section>
-          <input type="email" required placeholder="email" />
-          <input type="password" required placeholder="senha" />
-
+      <form onSubmit={sendForm}>
+        <nav>
           <div>
-            <button>Entrar</button>
+            <img src={logo} alt="logo" />
           </div>
+          <section>
+            <input
+              type="email"
+              required
+              placeholder="email"
+              disabled={disable}
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+            />
+            <input
+              type="password"
+              required
+              placeholder="senha"
+              disabled={disable}
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+            />
 
-          <Link to={`/cadastro`}>
-            <nobr>
-              <h1>Não tem uma conta? Cadastre-se!</h1>
-            </nobr>
-          </Link>
-        </section>
-      </nav>
+            <div>
+              <button>
+                {!disable ? (
+                  "Entrar"
+                ) : (
+                  <ThreeDots
+                    height="80"
+                    width="70"
+                    radius="9"
+                    color="#FFFFFF"
+                    ariaLabel="three-dots-loading"
+                    wrapperStyle
+                    wrapperClass
+                  />
+                )}
+              </button>
+            </div>
+
+            <Link to={`/cadastro`}>
+              <nobr>
+                <h1>Não tem uma conta? Cadastre-se!</h1>
+              </nobr>
+            </Link>
+          </section>
+        </nav>
+      </form>
     </StyledLogin>
   );
 }

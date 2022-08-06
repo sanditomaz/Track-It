@@ -46,6 +46,9 @@ const StyledLogin = styled.main`
           font-weight: 400;
           color: #ffffff;
           cursor: pointer;
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
       }
       input {
