@@ -1,11 +1,14 @@
 import StyledHeader from "../Styles/StyleHeader";
-import SpongeBob from "../img/SpongeBob.png";
+import { useContext } from "react";
+import UserContext from "../06.Shared/UserContext";
 
 export default function Header() {
+  const { user } = useContext(UserContext);
+
   return (
     <StyledHeader>
       <h1>TrackIt</h1>
-      <img src={SpongeBob} alt="User" />
+      <img src={user.image} alt="User" />
     </StyledHeader>
   );
 }

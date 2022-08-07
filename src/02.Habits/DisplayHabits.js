@@ -1,7 +1,8 @@
 import StyledDisplayHabits from "../Styles/StyledDisplayHabits";
 import trash from "../img/trash.png";
 
-export default function DisplayHabits() {
+export default function DisplayHabits({ userListedHabit }) {
+  console.log(userListedHabit);
   const weekDays = ["D", "S", "T", "Q", "Q", "S", "S"];
   const clickedColor = "#CFCFCF";
   return (
@@ -10,18 +11,6 @@ export default function DisplayHabits() {
         <h1>Meus hábitos</h1>
         <div>+</div>
       </section>
-      <StyledDisplayHabits clickedColor={clickedColor}>
-        <div>
-          <h1>Ler 1 capítulo de livro</h1>
-          <img src={trash} />
-        </div>
-        <span>
-          {weekDays.map((item, index) => (
-            <ClickedDay day={item} key={index} />
-          ))}
-        </span>
-      </StyledDisplayHabits>
-
       <StyledDisplayHabits clickedColor={clickedColor}>
         <div>
           <h1>Ler 1 capítulo de livro</h1>

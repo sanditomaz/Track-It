@@ -35,19 +35,6 @@ const StyledAddHabits = styled.div`
     justify-content: flex-start;
     flex-wrap: wrap;
     gap: 4px;
-    p {
-      width: 30px;
-      height: 30px;
-      border: 1px solid #dbdbdb;
-      background-color: ${(props) => props.color};
-      border-radius: 5px;
-      font-size: 20px;
-      font-weight: 400;
-      color: #d4d4d4;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
   }
   div {
     width: 90%;
@@ -67,6 +54,7 @@ const StyledAddHabits = styled.div`
         font-size: 16px;
         font-weight: 400;
         color: #52b6ff;
+        cursor: pointer;
       }
       h4 {
         width: 84px;
@@ -79,6 +67,7 @@ const StyledAddHabits = styled.div`
         display: flex;
         align-items: center;
         justify-content: center;
+        cursor: pointer;
       }
     }
   }

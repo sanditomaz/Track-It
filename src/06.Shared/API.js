@@ -2,8 +2,8 @@ import axios from "axios";
 
 const BASE_URL = "https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit";
 
-function ListarHabitos() {
-  const promise = axios.get(`${BASE_URL}/habits`);
+function ListarHabitos(config) {
+  const promise = axios.get(`${BASE_URL}/habits`, config);
   return promise;
 }
 
@@ -18,7 +18,6 @@ function HistoricoDeHabitos() {
 }
 
 function FazerCadastro(body) {
-  console.log(body);
   return axios.post(`${BASE_URL}/auth/sign-up`, body);
 }
 
@@ -26,9 +25,8 @@ function FazerLogin(body) {
   return axios.post(`${BASE_URL}/auth/login`, body);
 }
 
-function CriarHabito() {
-  const promise = axios.post(`${BASE_URL}/habits`);
-  return promise;
+function CriarHabito(habit, config) {
+  return axios.post(`${BASE_URL}/habits`, habit, config);
 }
 
 function DeletarHabito() {

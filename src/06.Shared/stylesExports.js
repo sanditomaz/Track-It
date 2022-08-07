@@ -7,3 +7,4 @@ export { default as StyledHistory } from "../Styles/StyledHistory";
 export { default as StyledLogin } from "../Styles/StyledLogin";
 export { default as StyledTodayHabits } from "../Styles/StyledTodayHabit";
 export { default as StyledHeader } from "../Styles/StyleHeader";
+export { default as StyledParagraph } from "../Styles/StyledParaghAddHabits";

@@ -36,6 +36,7 @@ const StyledHabits = styled.main`
         align-items: center;
         justify-content: center;
         border-radius: 5px;
+        cursor: pointer;
       }
     }
     h2 {

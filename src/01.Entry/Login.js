@@ -2,13 +2,15 @@ import logo from "../img/logo.png";
 import StyledLogin from "../Styles/StyledLogin";
 import { ThreeDots } from "react-loader-spinner";
 import { Link, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { FazerLogin } from "../06.Shared/API";
+import UserContext from "../06.Shared/UserContext";
 
 export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [disable, setDisable] = useState(false);
+  const { setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
   function sendForm(e) {
@@ -19,7 +21,10 @@ export default function Login() {
       password,
     };
     const promise = FazerLogin(body);
-    promise.then((res) => navigate("/hoje"));
+    promise.then((res) => {
+      setUser(res.data);
+      navigate("/hoje");
+    });
     promise.catch((err) => {
       alert("Não foi possível fazer o login, verifique seus dados!");
       setDisable(false);
