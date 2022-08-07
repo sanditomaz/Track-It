@@ -33,7 +33,7 @@ const StyledDisplayHabits = styled.main`
     justify-content: flex-start;
     flex-wrap: wrap;
     gap: 4px;
-    p {
+    /*  p {
       width: 30px;
       height: 30px;
       border: 1px solid #dbdbdb;
@@ -45,7 +45,7 @@ const StyledDisplayHabits = styled.main`
       display: flex;
       align-items: center;
       justify-content: center;
-    }
+    } */
   }
 `;
 export default StyledDisplayHabits;

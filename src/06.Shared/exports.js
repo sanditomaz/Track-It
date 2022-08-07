@@ -6,3 +6,5 @@ export { default as TodayHabit } from "../03.Habits-Today/TodayHabit";
 export { default as History } from "../04.History/History";
 export { default as Header } from "../00.Header/Header";
 export { default as Footer } from "../05.Footer/Footer";
+export { default as AddHabits } from "../02.Habits/AddHabits";
+export { default as DisplayHabits } from "../02.Habits/DisplayHabits";

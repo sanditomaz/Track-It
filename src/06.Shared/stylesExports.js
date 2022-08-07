@@ -8,3 +8,5 @@ export { default as StyledLogin } from "../Styles/StyledLogin";
 export { default as StyledTodayHabits } from "../Styles/StyledTodayHabit";
 export { default as StyledHeader } from "../Styles/StyleHeader";
 export { default as StyledParagraph } from "../Styles/StyledParaghAddHabits";
+export { default as LoadingImg } from "../Styles/LoadingImg";
+export { default as Paragraph } from "../Styles/Styled2Paragraph";
