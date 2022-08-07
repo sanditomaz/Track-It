@@ -3,6 +3,7 @@ import { StyledAddHabits, StyledParagraph } from "../06.Shared/stylesExports";
 import { CriarHabito } from "../06.Shared/API";
 import UserContext from "../06.Shared/UserContext";
 import { ThreeDots } from "react-loader-spinner";
+import { useNavigate } from "react-router-dom";
 
 export default function AddHabits({ setTypeHabit }) {
   const weekDays = [
@@ -16,22 +17,32 @@ export default function AddHabits({ setTypeHabit }) {
   ];
   const [typedHabbit, setTypedHabbit] = useState("");
   const [days, setDays] = useState([]);
-  const [habit, setHabit] = useState({});
   const [disable, setDisable] = useState(false);
   const { user } = useContext(UserContext);
+  const navigate = useNavigate();
   const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
   function sendHabit() {
     setDisable(true);
-    setHabit({ name: typedHabbit, days: days });
+    const body = {
+      name: typedHabbit,
+      days: days,
+    };
 
-    const promise = CriarHabito(habit, config);
+    const promise = CriarHabito(body, config);
     promise.then((res) => {
-      setDisable(false);
+      {
+        setDisable(false);
+        setTypeHabit(false);
+        navigate("/hoje");
+        navigate("/habitos");
+      }
     });
-    promise.catch(alert("Algo de errado não está certo!"));
+    promise.catch(() => {
+      setDisable(false);
+      console.log("Algo de errado não está certo!");
+    });
   }
-  console.log(habit);
 
   return (
     <StyledAddHabits>
@@ -41,7 +52,9 @@ export default function AddHabits({ setTypeHabit }) {
         value={typedHabbit}
         name="name"
         disabled={disable}
-        onChange={(e) => setTypedHabbit(e.target.value)}
+        onChange={(e) => {
+          setTypedHabbit(e.target.value);
+        }}
       ></input>
       <span>
         {weekDays.map((item, index) => (
@@ -59,7 +72,6 @@ export default function AddHabits({ setTypeHabit }) {
         <aside>
           <h3 onClick={() => setTypeHabit(false)}>Cancelar</h3>
           <h4 onClick={() => sendHabit()}>
-            {" "}
             {!disable ? (
               "Salvar"
             ) : (

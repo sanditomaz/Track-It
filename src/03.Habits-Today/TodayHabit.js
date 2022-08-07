@@ -30,3 +30,9 @@ export default function TodayHabits() {
     </>
   );
 }
+
+function displayTodayHabits(){
+  return(
+    
+  )
+}

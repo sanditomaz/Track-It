@@ -7,6 +7,7 @@ import UserContext from "../06.Shared/UserContext";
 export default function Habits() {
   const [userListedHabit, setUserListedHabit] = useState(null);
   const [typeHabit, setTypeHabit] = useState(false);
+  const [update, setUpdate] = useState(false);
   const { user } = useContext(UserContext);
   const config = { headers: { Authorization: `Bearer ${user.token}` } };
 
@@ -14,9 +15,11 @@ export default function Habits() {
     const promise = ListarHabitos(config);
     promise.then((res) => {
       setUserListedHabit(res.data);
+      setTypeHabit(false);
+      setUpdate(false);
     });
   }, []);
-
+  console.log(userListedHabit);
   if (userListedHabit === null || userListedHabit > 0) {
     return (
       <>
@@ -37,7 +40,14 @@ export default function Habits() {
           <nav>
             <section>
               <h1>Meus hábitos</h1>
-              <div onClick={() => setTypeHabit(true)}>+</div>
+              <div
+                onClick={() => {
+                  setTypeHabit(true);
+                  setUpdate(true);
+                }}
+              >
+                +
+              </div>
             </section>
             {typeHabit ? <AddHabits setTypeHabit={setTypeHabit} /> : ""}
             <h2>
@@ -46,10 +56,13 @@ export default function Habits() {
             </h2>
           </nav>
         ) : (
-          <DisplayHabits userListedHabit={userListedHabit} />
+          <DisplayHabits
+            userListedHabit={userListedHabit}
+            update={update}
+            setUpdate={setUpdate}
+          />
         )}
       </StyledHabits>
-      {/* <AddHabits /> */}
 
       <Footer />
     </>

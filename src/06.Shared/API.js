@@ -25,12 +25,12 @@ function FazerLogin(body) {
   return axios.post(`${BASE_URL}/auth/login`, body);
 }
 
-function CriarHabito(habit, config) {
-  return axios.post(`${BASE_URL}/habits`, habit, config);
+function CriarHabito(body, config) {
+  return axios.post(`${BASE_URL}/habits`, body, config);
 }
 
-function DeletarHabito() {
-  const promise = axios.post(`${BASE_URL}/habits/ID_DO_HABITO`);
+function DeletarHabito(config, habitId) {
+  const promise = axios.delete(`${BASE_URL}/habits/${habitId}`, config);
   return promise;
 }
 
