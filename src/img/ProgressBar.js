@@ -2,13 +2,28 @@ import {
   CircularProgressbarWithChildren,
   buildStyles,
 } from "react-circular-progressbar";
+import { useContext, useEffect } from "react";
+import UserContext from "../06.Shared/UserContext";
 
-export default function Progressbar() {
-  let percentage = 60;
+export default function Progressbar({ todaysHabit }) {
+  const { setProgress, progress } = useContext(UserContext);
+
+  useEffect(() => {
+    if (todaysHabit !== undefined) {
+      const filteredValue = todaysHabit.filter((value) => value.done);
+      const totalProgress = Math.round(
+        (filteredValue.length / todaysHabit.length) * 100
+      );
+      setProgress(totalProgress);
+    }
+  }, [todaysHabit, progress]);
+
+  console.log(progress);
+
   return (
     <div style={{ width: "91px", height: "91px", paddingBottom: "40px" }}>
       <CircularProgressbarWithChildren
-        value={percentage}
+        value={progress}
         background
         backgroundPadding={6}
         styles={buildStyles({

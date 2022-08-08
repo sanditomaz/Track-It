@@ -13,6 +13,7 @@ import { useState } from "react";
 export default function App() {
   const [user, setUser] = useState(null);
   const [progress, setProgress] = useState(0);
+
   return (
     <UserContext.Provider value={{ user, setUser, progress, setProgress }}>
       <BrowserRouter>

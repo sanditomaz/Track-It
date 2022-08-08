@@ -7,13 +7,13 @@ import { useNavigate } from "react-router-dom";
 
 export default function AddHabits({ setTypeHabit }) {
   const weekDays = [
-    { id: 1, day: "D" },
-    { id: 2, day: "S" },
-    { id: 3, day: "T" },
+    { id: 0, day: "D" },
+    { id: 1, day: "S" },
+    { id: 2, day: "T" },
+    { id: 3, day: "Q" },
     { id: 4, day: "Q" },
-    { id: 5, day: "Q" },
+    { id: 5, day: "S" },
     { id: 6, day: "S" },
-    { id: 7, day: "S" },
   ];
   const [typedHabbit, setTypedHabbit] = useState("");
   const [days, setDays] = useState([]);
@@ -95,7 +95,7 @@ export default function AddHabits({ setTypeHabit }) {
 function WeekDay({ day, id, days, setDays, disabled }) {
   const [backGroundColor, setBackGroundColor] = useState("#FFFFFF");
   const [color, setColor] = useState("#dbdbdb");
-
+  console.log(DataView);
   function selectDay() {
     if (color === "#dbdbdb") {
       setColor("#FFFFFF");

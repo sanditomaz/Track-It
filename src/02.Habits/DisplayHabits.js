@@ -7,7 +7,7 @@ import { DeletarHabito } from "../06.Shared/API";
 import UserContext from "../06.Shared/UserContext";
 import { useNavigate } from "react-router-dom";
 
-export default function DisplayHabits({ userListedHabit, update, setUpdate }) {
+export default function DisplayHabits({ userListedHabit }) {
   const [typeHabit, setTypeHabit] = useState(false);
   return (
     <nav>
@@ -23,15 +23,13 @@ export default function DisplayHabits({ userListedHabit, update, setUpdate }) {
           days={item.days}
           habitId={item.id}
           key={index}
-          update={update}
-          setUpdate={setUpdate}
         />
       ))}
     </nav>
   );
 }
 
-function MyHabits({ name, days, habitId, update, setUpdate }) {
+function MyHabits({ name, days, habitId }) {
   const { user } = useContext(UserContext);
   const config = { headers: { Authorization: `Bearer ${user.token}` } };
   const navigate = useNavigate();

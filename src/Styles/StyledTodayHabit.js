@@ -33,6 +33,11 @@ const StyledTodayHabits = styled.main`
         font-weight: 400;
         color: #bababa;
       }
+      h3 {
+        font-size: 18px;
+        font-weight: 400;
+        color: #8fc549;
+      }
     }
   }
 `;

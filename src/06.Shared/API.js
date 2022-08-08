@@ -7,8 +7,8 @@ function ListarHabitos(config) {
   return promise;
 }
 
-function BuscarHabitos() {
-  const promise = axios.get(`${BASE_URL}/habits/today`);
+function BuscarHabitos(config) {
+  const promise = axios.get(`${BASE_URL}/habits/today`, config);
   return promise;
 }
 
@@ -34,14 +34,12 @@ function DeletarHabito(config, habitId) {
   return promise;
 }
 
-function MarcarHabitoComoFeito() {
-  const promise = axios.post(`${BASE_URL}/habits/ID_DO_HABITO/check`);
-  return promise;
+function MarcarHabitoComoFeito(habitId, body, config) {
+  return axios.post(`${BASE_URL}/habits/${habitId}/check`, body, config);
 }
 
-function DesmarcarHabitoComoFeito() {
-  const promise = axios.post(`${BASE_URL}/habits/ID_DO_HABITO/uncheck`);
-  return promise;
+function DesmarcarHabitoComoFeito(habitId, body, config) {
+  return axios.post(`${BASE_URL}/habits/${habitId}/uncheck`, body, config);
 }
 
 export {

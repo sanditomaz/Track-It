@@ -23,18 +23,32 @@ const Habit = styled.div`
       color: #666666;
       padding-bottom: 7px;
     }
-    p {
+    h1 {
       font-size: 13px;
       font-weight: 400;
       color: #666666;
       padding: 1px 0;
+      display: flex;
+    }
+    h5 {
+      font-size: 13px;
+      font-weight: 400;
+      color: ${({ current, highest }) =>
+        current < 1 ? "#666666" : current === highest ? "#8FC549" : "#666666"};
+      padding: 1px 0 0 5px;
+    }
+    h6 {
+      font-size: 13px;
+      font-weight: 400;
+      color: ${({ current }) => (current > 0 ? "#8FC549" : "#666666")};
+      padding: 1px 0 0 5px;
     }
   }
 
   span {
     width: 69px;
     height: 69px;
-    background-color: ${(props) => props.backgroundColor};
+    background-color: ${({ checked }) => (checked ? "#8FC549" : "#E7E7E7")};
     border: 1px solid #e7e7e7;
     border-radius: 5px;
     font-size: 50px;
@@ -43,6 +57,7 @@ const Habit = styled.div`
     align-items: center;
     justify-content: center;
     margin-right: 13px;
+    cursor: pointer;
   }
 `;
 export default Habit;
