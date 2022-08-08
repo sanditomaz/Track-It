@@ -21,27 +21,31 @@ export default function AddHabits({ setTypeHabit }) {
   const { user } = useContext(UserContext);
   const navigate = useNavigate();
   const config = { headers: { Authorization: `Bearer ${user.token}` } };
-
+  console.log(days);
   function sendHabit() {
-    setDisable(true);
-    const body = {
-      name: typedHabbit,
-      days: days,
-    };
+    if (days.length === 0) {
+      alert("Selecione pelo menos um dia da semana!");
+    } else {
+      setDisable(true);
+      const body = {
+        name: typedHabbit,
+        days: days,
+      };
 
-    const promise = CriarHabito(body, config);
-    promise.then((res) => {
-      {
+      const promise = CriarHabito(body, config);
+      promise.then((res) => {
+        {
+          setDisable(false);
+          setTypeHabit(false);
+          navigate("/hoje");
+          navigate("/habitos");
+        }
+      });
+      promise.catch(() => {
         setDisable(false);
-        setTypeHabit(false);
-        navigate("/hoje");
-        navigate("/habitos");
-      }
-    });
-    promise.catch(() => {
-      setDisable(false);
-      console.log("Algo de errado não está certo!");
-    });
+        console.log("Algo de errado não está certo!");
+      });
+    }
   }
 
   return (
@@ -95,7 +99,7 @@ export default function AddHabits({ setTypeHabit }) {
 function WeekDay({ day, id, days, setDays, disabled }) {
   const [backGroundColor, setBackGroundColor] = useState("#FFFFFF");
   const [color, setColor] = useState("#dbdbdb");
-  console.log(DataView);
+
   function selectDay() {
     if (color === "#dbdbdb") {
       setColor("#FFFFFF");
