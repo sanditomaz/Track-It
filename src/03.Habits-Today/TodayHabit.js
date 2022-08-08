@@ -21,7 +21,6 @@ export default function TodayHabits() {
   const { user } = useContext(UserContext);
   const config = { headers: { Authorization: `Bearer ${user.token}` } };
   const { progress, setProgress } = useContext(UserContext);
-  console.log(progress);
 
   const day = dayjs().locale("pt-br").format("dddd, DD/MM");
 
@@ -55,7 +54,7 @@ export default function TodayHabits() {
         <nav>
           <section>
             <h1>{day}</h1>
-            {todaysHabit === 0 ? (
+            {todaysHabit.length === 0 ? (
               <h2>Nenhum hábito concluído ainda</h2>
             ) : (
               <h3> {progress}% dos hábitos concluídos</h3>

@@ -18,8 +18,8 @@ export default function Progressbar({ todaysHabit }) {
     }
   }, [todaysHabit, progress]);
 
+  console.log(todaysHabit);
   console.log(progress);
-
   return (
     <div style={{ width: "91px", height: "91px", paddingBottom: "40px" }}>
       <CircularProgressbarWithChildren
